@@ -1,0 +1,61 @@
+*,
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    .container {
+        padding: 1rem;
+
+        .title-page {
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+    }
+}
+
+.circle {
+    width: 100%;
+    height: 100%;
+    background-color: red; /* Default color, can make this customizable */
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+  
+
+#carton-rifa {
+    /* margin: .5em; */
+    padding: 1rem;
+    width: 100%;
+    /* height: 50vh; */
+    border: solid 1px #353535;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    td {
+        position: relative; /* Required for absolute positioning of the circle */
+        cursor: pointer; /* Indicates the cells are interactive */
+        height: 50px; /* Ensure the cells are large enough to handle a circle */
+    }
+
+    td,
+    th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+}

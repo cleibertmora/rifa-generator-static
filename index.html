@@ -8,49 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <style>
-        *,
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-
-            .container {
-                padding: 1rem;
-
-                .title-page {
-                    margin-bottom: 1rem;
-                    text-transform: uppercase;
-                }
-            }
-        }
-
-        #carton-rifa {
-            /* margin: .5em; */
-            padding: 1rem;
-            width: 100%;
-            /* height: 50vh; */
-            background-color: bisque;
-
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            td,
-            th {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: center;
-            }
-
-            form {
-                margin-bottom: 20px;
-            }
-        }
-    </style>
-
+    <link rel="stylesheet" href="./main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
+    <script src="./main.js" defer></script>
 </head>
 
 <body>
@@ -60,18 +20,18 @@
         <form id="parametersForm">
             <p>Select range:</p>
             <label>
-                <input type="radio" name="range" value="1-50" checked> From 1 to 50
+                <input type="radio" name="range" value="1-50" checked> Desde 1 hasta 50
             </label><br>
             <label>
-                <input type="radio" name="range" value="1-100"> From 1 to 100
+                <input type="radio" name="range" value="1-100"> Desde 1 hasta 100
             </label><br>
 
             <p>Select columns:</p>
             <label>
-                <input type="radio" name="columns" value="6" checked> 6 columns
+                <input type="radio" name="columns" value="6" checked> 6 columnas
             </label><br>
             <label>
-                <input type="radio" name="columns" value="9"> 9 columns
+                <input type="radio" name="columns" value="9"> 9 columnas
             </label><br>
 
             <label for="startingNumber">Starting Number:</label>
@@ -81,39 +41,42 @@
         </form>
 
         <br>
+        <div id="download-carton" style="display: none;">
+            <hr><br><br>
+    
+            <div id="carton-rifa">
+    
+            </div>
+        </div>
+
+        <br><hr>
+        <p style="text-align: center;">
+            <button onclick="downloadAsImage()">Descargar carton</button>
+        </p>
+        <br>
         <hr><br>
 
-        <div id="carton-rifa">
+        <form id="backgroundForm" style="display: none;">
+            <label for="backgroundColor">Background Color (optional):</label>
+            <input type="color" id="backgroundColor" name="backgroundColor"><br>
 
-        </div>
+            <label for="backgroundImage">Background Image (optional):</label>
+            <input type="file" id="backgroundImage" name="backgroundImage" accept="image/*"><br>
+
+            <label for="borderColor">Table Border Color:</label>
+            <input type="color" id="borderColor" name="borderColor"><br>
+
+            <label for="textColor">Text Color:</label>
+            <input type="color" id="textColor" name="textColor"><br>
+
+            <button type="button" onclick="applyCustomizations()">Apply Customizations</button>
+        </form>
     </div>
-    <script>
-        function generateTable() {
-            const range = document.querySelector('input[name="range"]:checked').value.split('-');
-            const columns = parseInt(document.querySelector('input[name="columns"]:checked').value, 10);
-            const startingNumber = parseInt(document.getElementById('startingNumber').value, 10);
 
-            const from = startingNumber;
-            const to = startingNumber + (range[1] - range[0]);
-
-            const table = document.createElement('table');
-            let row = table.insertRow();
-            let number = from;
-
-            for (let i = from; i <= to; i++) {
-                if ((i - from) % columns === 0 && i !== from) {
-                    row = table.insertRow();
-                }
-                let cell = row.insertCell();
-                cell.innerHTML = number;
-                number++;
-            }
-
-            const container = document.getElementById('carton-rifa');
-            container.innerHTML = ''; // Clear previous tables
-            container.appendChild(table);
-        }
-    </script>
+    <br><br><br>
+    <p style="text-align: center;">
+        Hecho por Cleibert Mora :)
+    </p>
 </body>
 
 </html>
